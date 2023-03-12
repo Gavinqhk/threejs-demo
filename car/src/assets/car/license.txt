@@ -1,0 +1,11 @@
+Model Information:
+* title:	Mercedes Benz SL 65 AMG Black Series
+* source:	https://sketchfab.com/3d-models/mercedes-benz-sl-65-amg-black-series-3800511ff3e74ea092f2460ec253a748
+* author:	aaflak6443 (https://sketchfab.com/aaflak6443)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Mercedes Benz SL 65 AMG Black Series" (https://sketchfab.com/3d-models/mercedes-benz-sl-65-amg-black-series-3800511ff3e74ea092f2460ec253a748) by aaflak6443 (https://sketchfab.com/aaflak6443) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

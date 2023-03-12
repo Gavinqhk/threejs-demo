@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="assets/threejs/three.min.js"></script>
+	<script src="assets/threejs/js/controls/OrbitControls.js"></script>
+	<style>
+		* {
+			padding: 0;
+			margin: 0;
+		}
+	</style>
+</head>
+<body>
+	<div id="container"></div>
+	<script>
+		let renderer, camera, scene, light, earth, clouds, controls;
+		
+		function initRenderer() {
+			renderer = new THREE.WebGLRenderer({
+                        antialias: true,
+                        alpha: true,
+                        canvas: renderer
+                      })
+			renderer.setPixelRatio(window.devicePixelRatio)
+			renderer.setSize(window.innerWidth, window.innerHeight)
+			document.querySelector('#container').appendChild(renderer.domElement)
+			renderer.setClearColor(0x000000, 1.0)
+		}
+
+    function initCamera() {
+        camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 10000);
+        camera.position.set(-500, 500, -500)
+        camera.lookAt(0, 0, 0);
+    }
+
+		function inieScene() {
+      scene = new THREE.Scene();
+		}
+
+		function initLight() {
+			light = new THREE.AmbientLight(0xffffff)
+			light.position.set(100, 100, 200)
+			scene.add(light)
+		}
+
+		function initEarth() {
+			const earthGeo =  new THREE.SphereGeometry(200, 100, 100)
+			const earthMater =  new THREE.MeshPhongMaterial({
+				map: new THREE.TextureLoader().load('./assets/images/earth.jpg'),
+				side: THREE.DoubleSide
+			})
+			earth = new THREE.Mesh(earthGeo, earthMater)
+			scene.add(earth)
+		}
+
+		function initClouds() {
+			const cloudsGeo =  new THREE.SphereGeometry(201, 100, 100)
+			const cloudsMater =  new THREE.MeshPhongMaterial({
+				alphaMap: new THREE.TextureLoader().load('./assets/images/clouds.jpg'),
+				transparent: true,
+				opacity: 0.2
+			})
+			clouds = new THREE.Mesh(cloudsGeo, cloudsMater)
+			scene.add(clouds)
+		}
+
+		function initControls() {
+			// 载入控制器
+			controls = new THREE.OrbitControls(camera, renderer.domElement);
+		}
+
+		function start() {
+			initRenderer()
+			initCamera()
+			inieScene()
+			initLight()
+			initEarth()
+			initClouds()
+			initControls()
+			renderer.clear()
+			animate()
+		}
+
+		document.addEventListener('DOMContentLoaded', function () {
+			start()
+		})
+
+		function animate() {
+			controls.update()
+			earth.rotation.y -= 0.002
+			clouds.rotation.y -= 0.005
+			clouds.rotation.z += 0.005
+			renderer.render(scene, camera);
+			requestAnimationFrame(animate)
+		}
+
+	</script>
+</body>
+</html>
